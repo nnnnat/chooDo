@@ -1,0 +1,50 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "description": "Tiny project starter",
+  "main": "index.tsx",
+  "scripts": {
+    "build": "ENV=prd npm run wp",
+    "prestart": "npm i && npm run build",
+    "start": "ENV=prd npm run server",
+    "watch": "ENV=dev run-p server browserSync wp:watch",
+    "browserSync": "browser-sync start --proxy \"localhost\" --files \"./dist\"",
+    "wp": "webpack --config ./config/webpack.config.js -p",
+    "wp:watch": "webpack --config ./config/webpack.config.js --watch",
+    "server": "docker-compose -f ./config/docker-compose.yml up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nattkua/base.git"
+  },
+  "keywords": [
+    "internet",
+    "world wide web",
+    "the net",
+    "the web"
+  ],
+  "author": "Nat Hamilton",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.8",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "markdown-loader": "^2.0.0",
+    "npm-run-all": "^4.0.2",
+    "postcss": "^6.0.1",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-loader": "^1.3.3",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.5.1"
+  },
+  "dependencies": {
+    "choo": "^5.6.1"
+  }
+}

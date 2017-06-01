@@ -1,0 +1,12 @@
+# IDE Junk
+.alm
+.idea
+.vscode
+
+# npm / build junk
+*.log
+node_modules
+dist
+
+# secret shit
+config/tokens.ts

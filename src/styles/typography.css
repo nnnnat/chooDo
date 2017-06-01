@@ -1,0 +1,48 @@
+/*==============================================================================
+Modular Scale System
+//============================================================================*/
+html {
+  font-size: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+body {
+  font: normal 1rem/1.5 system-ui;
+}
+
+
+/*==============================================================================
+Font Styles
+//============================================================================*/
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+small {
+  font-size: .75rem;
+}
+
+/* these will probably move */
+input {
+  font-size: 1rem;
+}
+
+label {
+  font-size: 1rem;
+}
+
+button {
+  font-size: 1rem;
+}

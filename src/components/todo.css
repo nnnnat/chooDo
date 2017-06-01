@@ -1,0 +1,6 @@
+.root {
+  border: .25rem solid currentColor;
+  flex: 0 0 auto;
+  margin: 1rem 0;
+  padding: 2rem;
+}
