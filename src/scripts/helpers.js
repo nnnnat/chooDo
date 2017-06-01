@@ -1,5 +1,5 @@
 /**
- * guid returns a RFC4122  v4 guid as a string
+ * guid returns a RFC4122 v4 guid as a string
  */
 export function guid () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

@@ -1,8 +1,6 @@
 import html from 'choo/html'
-// components
 import form from './form'
 import todo from './todo'
-// css
 import css from './view.css'
 
 export default ({upcoming, todos, appName, formFields}, emit) => {
