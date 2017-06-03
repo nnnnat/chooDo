@@ -9,6 +9,19 @@ export function guid () {
   })
 }
 
+/**
+ * prettyDate takes a date string and an optional options object,
+ * the options object is the same as the toLocaleDateString options
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
+ * returns new date string in Feb 23, 2017 format
+ * ['2017-02-23', Feb 23, 2017]
+ */
+export function prettyDate (str, options = {year: 'numeric', month: 'short', day: 'numeric'}) {
+  const date = new Date(`${str}T00:00:00`)
+  return date.toLocaleDateString('en-us', options)
+}
+
+//
 // bogus todos for testing / writing styles
 export const bogusTodos = [
   { id: guid(), title: 'overdue', dueDate: '2017-05-29', complete: false },

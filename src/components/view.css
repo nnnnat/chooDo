@@ -1,9 +1,9 @@
 .root {
-  background-color: WhiteSmoke;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 100vw;
+  margin: auto;
+  max-width: 70rem;
   min-height: 100vh;
   overflow-x: hidden;
   padding: 2rem;
@@ -14,13 +14,23 @@
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 1rem 0;
 }
 
-.modal {
+header {
   align-items: center;
   display: flex;
-  flex: 1 0 100vh;
-  justify-content: center;;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }

@@ -2,9 +2,10 @@ import { guid } from './helpers'
 
 export default (state, emitter) => {
   const ogState = () => ({
-    mode: 'new',
+    active: false,
+    edit: false,
     errors: [],
-    values: {
+    fields: {
       id: guid(),
       complete: false,
       title: '',
@@ -12,7 +13,7 @@ export default (state, emitter) => {
     }
   })
 
-  state.formFields = ogState()
+  state.form = ogState()
 
   // ==========================================================================
   // Form Events
@@ -24,20 +25,30 @@ export default (state, emitter) => {
    * emits the render event
    */
   emitter.on('form:clear', () => {
-    state.formFields = ogState()
+    state.form = ogState()
     emitter.emit('render')
   })
 
   /**
    * edit form event handler takes a todo obj as a param
-   * state.formField.mode is set to edit
-   * state.formfields.values gets todo values
+   * state.formField.edit is set to edit
+   * state.formfields.fields gets todo fields
    * emits the render event
    */
   emitter.on('form:edit', ({ id, title, dueDate, complete }) => {
-    console.log(title)
-    state.formFields.mode = 'edit'
-    state.formFields.values = { id, title, dueDate, complete }
+    state.form.active = true
+    state.form.edit = true
+    state.form.fields = { id, title, dueDate, complete }
+    emitter.emit('render')
+  })
+
+  /**
+   * form toggle event handler takes no param
+   * state.formField.active value is toggled
+   * emits the render event
+   */
+  emitter.on('form:toggle', () => {
+    state.form.active = !state.form.active
     emitter.emit('render')
   })
 
@@ -47,21 +58,21 @@ export default (state, emitter) => {
 
   /**
    * input update event handler takes a string as a param
-   * state.formField.values.title gets new value
+   * state.formField.fields.title gets new value
    * emits the render event
    */
   emitter.on('field:title', (value) => {
-    state.formFields.values.title = value
+    state.form.fields.title = value
     emitter.emit('render')
   })
 
   /**
    * date update event handler takes a string as a param
-   * state.formField.values.date gets new value
+   * state.formField.fields.date gets new value
    * emits the render event
    */
   emitter.on('field:date', (value) => {
-    state.formFields.values.dueDate = value
+    state.form.fields.dueDate = value
     emitter.emit('render')
   })
 }

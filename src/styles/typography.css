@@ -2,15 +2,25 @@
 Modular Scale System
 //============================================================================*/
 html {
-  font-size: 16px;
+  font-size: 15px;
 
   @media (min-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media (min-width: 992px) {
     font-size: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 23px;
   }
 }
 
 body {
-  font: normal 1rem/1.5 system-ui;
+  background-color: WhiteSmoke;
+  color: MediumVioletRed;
+  font: normal 1rem/1.25 system-ui;
 }
 
 
@@ -28,6 +38,7 @@ h2 {
 
 p {
   font-size: 1rem;
+  margin: 0 0 1rem;
 }
 
 small {
@@ -40,9 +51,5 @@ input {
 }
 
 label {
-  font-size: 1rem;
-}
-
-button {
   font-size: 1rem;
 }

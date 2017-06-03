@@ -1,4 +1,42 @@
 .root {
+  align-items: center;
+  background-color: #222222;
+  color: WhiteSmoke;
+  display: flex;
+  flex: 1 0 100vh;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  transform: scale(0, 0);
+  top: 0;
+  width: 100%;
+
+  &[data-active="true"] {
+    transform: scale(1, 1);
+  }
+}
+
+form {
   display: flex;
   flex-direction: column;
+  max-width: 30rem;
+  width: 100%;
+}
+
+
+fieldset {
+
+}
+
+input {
+
+}
+
+select {
+
+}
+
+label {
+
 }

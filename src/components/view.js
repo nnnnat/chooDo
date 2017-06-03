@@ -1,29 +1,33 @@
 import html from 'choo/html'
-import form from './form'
-import todo from './todo'
 import css from './view.css'
+import formEl from './form'
+import todoEl from './todo'
 
-export default ({upcoming, todos, appName, formFields}, emit) => {
-  const activeTodos = (upcoming) ? todos.filter((todo) => !todo.complete) : todos.filter((todo) => todo.complete)
+export default ({todos, form}, emit) => {
+  const activeTodos = (todos.upcoming) ? todos.data.filter((todo) => !todo.complete) : todos.data.filter((todo) => todo.complete)
   return html`<div class=${css.root}>
-    ${header(emit)}
+    ${headerEl(todos.upcoming, emit)}
+
     <main class=${css.todos}>
-      ${activeTodos.map((tData) => todo(tData, emit))}
+      ${activeTodos.map((todo) => todoEl(todo, emit))}
     </main>
-    ${footer()}
-    <section class=${css.modal}>
-      ${form(formFields, emit)}
-    </section>
+
+    ${footerEl()}
+    ${formEl(form, emit)}
   </div>`
 }
 
-const header = (emit) => html`
+const headerEl = (upcoming, emit) => html`
   <header>
     <h1>ToDo 4</h1>
-    <button onclick=${() => emit('todos:toggle')}>toggle</button>
+    <div class="button-group">
+      <button onclick=${() => emit('form:toggle')}>New Todo</button>
+      <button onclick=${() => emit('todos:toggle')}>${(upcoming) ? 'Complete Todos' : 'Upcoming Todos'}</button>
+    </div>
   </header>`
 
-const footer = () => html`
+const footerEl = () => html`
   <footer>
-    <small>Todo 4 2017</small>
+    <small>Todo 4</small>
+    <small>©2017</small>
   </footer>`
