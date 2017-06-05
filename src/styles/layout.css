@@ -11,6 +11,7 @@ header {
 }
 
 main {
+  align-items: flex-start;
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;

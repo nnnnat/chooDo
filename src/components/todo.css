@@ -5,6 +5,7 @@
   flex: 0 0 auto;
   flex-direction: column;
   margin: 1rem 0;
+  width: 100%;
   will-change: transform;
 
   @media (min-width: 768px) {
@@ -26,7 +27,7 @@
 @keyframes render {
   0% {
     opacity: 0;
-    transform: translateY(15%);
+    transform: translateY(-15%);
   }
   75% {
     transform: translateY(0);

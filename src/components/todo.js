@@ -3,7 +3,7 @@ import css from './todo.css'
 import { pDate } from '../scripts/helpers'
 
 export default (todo, emit, i) =>
-  html`<div class=${css.root} id=${todo.id} style="animation-delay: ${i + 2}00ms;">
+  html`<div class=${css.root} id=${todo.id} style="animation-delay: ${6 - i}00ms;">
     <div class=${css.info}>
       <h2><b>Due:</b> ${pDate(todo.due)}</h2>
       <p>${todo.title}</p>

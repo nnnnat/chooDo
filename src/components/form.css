@@ -53,7 +53,7 @@
   will-change: transform;
 
   & form {
-    transform: translateZ(0) translateY(100vh);
+    transform: translateZ(0) translateY(30%);
     transition: transform 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
   }
 
@@ -63,7 +63,7 @@
     transition: opacity 200ms cubic-bezier(0.39, 0.575, 0.565, 1), transform 0ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
     & form {
-      transform: translateZ(0) translateY(15vh);
+      transform: translateZ(0) translateY(15%);
     }
   }
 }
