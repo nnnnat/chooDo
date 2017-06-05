@@ -9,28 +9,3 @@
   padding: 2rem;
   width: 100%;
 }
-
-.todos {
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem 0;
-}
-
-header {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-footer {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}

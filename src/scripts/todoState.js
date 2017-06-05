@@ -1,16 +1,15 @@
 import { bogusTodos } from './helpers'
 
 export default (state, emitter) => {
-  const ogState = () => ({
-    upcoming: true,
-    data: bogusTodos
-  })
-
+  const ogState = () => ({ upcoming: true, data: bogusTodos })
   state.todos = ogState()
 
   emitter.on('DOMContentLoaded', () => {
     console.log('content loaded')
-    // emitter.emit('todos:refresh')
+  })
+
+  emitter.on('render', () => {
+    console.log('render')
   })
 
   // ==========================================================================
@@ -33,7 +32,7 @@ export default (state, emitter) => {
    * emits the render event
    */
   emitter.on('todos:refresh', () => {
-    state.todos.data.sort((a, b) => a.dueDate > b.dueDate)
+    state.todos.data.sort((a, b) => a.due > b.due)
     emitter.emit('render')
   })
 
@@ -49,7 +48,6 @@ export default (state, emitter) => {
   emitter.on('todo:create', (todo) => {
     state.todos.data = [...state.todos.data, todo]
     emitter.emit('form:clear')
-    emitter.emit('todos:refresh')
   })
 
  /**
@@ -57,14 +55,14 @@ export default (state, emitter) => {
   * state.todos.data gets new array with the updated todo obj replaced
   * emits the clear form and todos refresh events
   */
-  emitter.on('todo:update', (todo) => {
-    const index = state.todos.data.indexOf(todo)
+  emitter.on('todo:edit', (todo) => {
+    const index = state.todos.data.findIndex((t) => t.id === todo.id)
     state.todos.data = [
       ...state.todos.data.slice(0, index),
-      state.todos.data[index] = todo,
+      todo,
       ...state.todos.data.slice(index + 1)
     ]
-    emitter.emit('todos:refresh')
+    emitter.emit('form:clear')
   })
 
   /**
@@ -78,7 +76,6 @@ export default (state, emitter) => {
       ...state.todos.data.slice(0, index),
       ...state.todos.data.slice(index + 1)
     ]
-    emitter.emit('form:clear')
     emitter.emit('todos:refresh')
   })
 
@@ -92,7 +89,7 @@ export default (state, emitter) => {
     todo.complete = !todo.complete
     state.todos.data = [
       ...state.todos.data.slice(0, index),
-      state.todos.data[index] = todo,
+      todo,
       ...state.todos.data.slice(index + 1)
     ]
     emitter.emit('todos:refresh')

@@ -1,25 +1,32 @@
 import html from 'choo/html'
 import css from './form.css'
+import { guid } from '../scripts/helpers'
 
-export default ({ active, mode, fields: { id, complete, title, dueDate } }, emit) => {
+export default ({ active, edit, inputs: { title, due } }, emit) => {
   const submit = (e) => {
     e.preventDefault()
-    if (mode === 'edit') emit('todo:edit', { id, title, dueDate, complete })
-    else emit('todo:create', { id, title, dueDate, complete })
+    if (edit) emit('todo:edit', { id: edit, title, due, complete: false })
+    else emit('todo:create', { id: guid(), title, due, complete: false })
   }
 
   return html`<section class=${css.root} data-active=${active}>
     <form onsubmit=${submit}>
 
-      <label for="title">Todo:</label>
-      <input type="text" name="title" value=${title} oninput=${(e) => emit('field:title', e.target.value)} />
+      <label for="title">
+        <span>Todo</span>
+        <input type="text" name="title" autocomplete="off" placeholder="Task" value=${title} oninput=${(e) => emit('form:input', e.target)} />
+        <span class="error"></span>
+      </label>
 
-      <label for="date">Due Date:</label>
-      <input type="date" name="date" value=${dueDate} oninput=${(e) => emit('field:date', e.target.value)} />
+      <label for="due">
+        <span>Due</span>
+        <input type="date" name="due" placeholder="mm-dd-yyyy" value=${due} oninput=${(e) => emit('form:input', e.target)} />
+        <span class="error"></span>
+      </label>
 
-      <div className="button-group">
-        <button type="submit">${(mode === 'edit') ? 'Edit' : 'Add'}</button>
-        <button onclick=${() => emit('form:clear')}>Cancel</button>
+      <div className="group">
+        <button class="invert" type="submit">${(edit) ? 'Edit' : 'Add'}</button>
+        <button class="invert" type="reset" onclick=${() => emit('form:clear')}>Cancel</button>
       </div>
 
     </form>

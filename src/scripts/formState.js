@@ -1,18 +1,12 @@
-import { guid } from './helpers'
+// import Validator from './validator'
 
 export default (state, emitter) => {
+  // const validate = new Validator(emitter)
   const ogState = () => ({
     active: false,
-    edit: false,
     errors: [],
-    fields: {
-      id: guid(),
-      complete: false,
-      title: '',
-      dueDate: ''
-    }
+    inputs: { title: '', due: '' }
   })
-
   state.form = ogState()
 
   // ==========================================================================
@@ -21,30 +15,41 @@ export default (state, emitter) => {
 
   /**
    * clear form event handler takes no param
-   * state.formField is set to ogState
-   * emits the render event
+   * state.form is set to ogState
+   * emits the render event and refreshes the todo list
    */
   emitter.on('form:clear', () => {
     state.form = ogState()
+    emitter.emit('todos:refresh')
+  })
+
+  /**
+   * clear form event handler takes no param
+   * form is set to ogState
+   * emits the render event
+   */
+  emitter.on('form:error', () => {
+    console.log('form has error')
     emitter.emit('render')
   })
 
   /**
    * edit form event handler takes a todo obj as a param
-   * state.formField.edit is set to edit
-   * state.formfields.fields gets todo fields
+   * form.edit is set to edit
+   * forminputs.inputs gets todo inputs
    * emits the render event
    */
-  emitter.on('form:edit', ({ id, title, dueDate, complete }) => {
+  emitter.on('form:edit', ({ id, title, due }) => {
     state.form.active = true
-    state.form.edit = true
-    state.form.fields = { id, title, dueDate, complete }
+    state.form.edit = id
+    state.form.inputs.title = title
+    state.form.inputs.due = due
     emitter.emit('render')
   })
 
   /**
    * form toggle event handler takes no param
-   * state.formField.active value is toggled
+   * form.active value is toggled
    * emits the render event
    */
   emitter.on('form:toggle', () => {
@@ -52,27 +57,14 @@ export default (state, emitter) => {
     emitter.emit('render')
   })
 
-  // ==========================================================================
-  // Field State Events
-  // ==========================================================================
-
   /**
-   * input update event handler takes a string as a param
-   * state.formField.fields.title gets new value
+   * form input event handler takes a field element as a param
+   * form.inputs[input.name] gets new value
    * emits the render event
    */
-  emitter.on('field:title', (value) => {
-    state.form.fields.title = value
-    emitter.emit('render')
-  })
-
-  /**
-   * date update event handler takes a string as a param
-   * state.formField.fields.date gets new value
-   * emits the render event
-   */
-  emitter.on('field:date', (value) => {
-    state.form.fields.dueDate = value
+  emitter.on('form:input', (input) => {
+    // validate.isEmpty(input)
+    state.form.inputs[input.name] = input.value
     emitter.emit('render')
   })
 }

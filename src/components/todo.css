@@ -1,9 +1,11 @@
 .root {
+  animation: render 500ms cubic-bezier(0.39, 0.575, 0.565, 1) 1 alternate both;
   border: 2px solid currentColor;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   margin: 1rem 0;
+  will-change: transform;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -13,10 +15,23 @@
 .info {
   border-bottom: 2px solid MediumVioletRed;
   flex: 1 0 auto;
-  padding: 1.5rem;
+  padding: 1rem;
 
   @media (min-width: 768px) {
     border-bottom: none;
     border-right: 2px solid MediumVioletRed;
+  }
+}
+
+@keyframes render {
+  0% {
+    opacity: 0;
+    transform: translateY(15%);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
   }
 }

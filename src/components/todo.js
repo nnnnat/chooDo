@@ -1,13 +1,13 @@
 import html from 'choo/html'
 import css from './todo.css'
-import { prettyDate } from '../scripts/helpers'
+import { pDate } from '../scripts/helpers'
 
-export default (todo, emit) => html`
-  <div class=${css.root} id=${todo.id}>
+export default (todo, emit, i) =>
+  html`<div class=${css.root} id=${todo.id} style="animation-delay: ${i + 2}00ms;">
     <div class=${css.info}>
-      <h2><b>Due:</b> ${prettyDate(todo.dueDate)}</h2>
+      <h2><b>Due:</b> ${pDate(todo.due)}</h2>
       <p>${todo.title}</p>
-      <div class="button-group">
+      <div class="group">
         <button class="secondary" onclick=${() => emit('form:edit', todo)}>Edit</button>
         <button class="secondary" onclick=${() => emit('todo:delete', todo)}>Delete</button>
       </div>

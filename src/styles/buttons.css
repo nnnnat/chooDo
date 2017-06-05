@@ -6,12 +6,12 @@ button {
   color: MediumVioletRed;
   cursor: pointer;
   display: table;
-  font-size: 1rem;
-  font-family: inherit;
-  font-weight: bold;
-  padding: .5rem 1rem;
-  transition: background-color 300ms ease, border 300ms ease, color 300ms ease;
+  padding: 1rem 1.5rem;
+  transition: background-color 300ms cubic-bezier(0.39, 0.575, 0.565, 1), border 300ms cubic-bezier(0.39, 0.575, 0.565, 1), color 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
   width: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
   &:--enter {
     background-color: MediumVioletRed;
@@ -19,30 +19,38 @@ button {
   }
 }
 
-:global .primary {
-  border-color: transparent;
-  padding: 1rem 2rem;
+:global .invert {
+  border-color: WhiteSmoke;
+  color: WhiteSmoke;
 
   &:--enter {
-    border-color: MediumVioletRed;
+    background-color: WhiteSmoke;
+    color: MediumVioletRed;
+  }
+}
+
+:global .primary {
+  background-color: MediumVioletRed;
+  border-color: transparent;
+  color: WhiteSmoke;
+
+  &:--enter {
+    background-color: transparent;
+    color: MediumVioletRed;
   }
 }
 
 :global .secondary {
   border-color: transparent;
   border-bottom: 2px solid MediumVioletRed;
+  padding: .5rem;
 
   &:--enter {
     border-color: MediumVioletRed;
   }
 }
 
-/* button groups */
-:global .button-group {
-  display: flex;
-  justify-content: flex-start;
-}
-
-:global .button-group button {
-  margin: 0 1rem 0 0;
+/* if button is in a group add some spacing*/
+button + button {
+  margin: 0 0 0 1rem;
 }
