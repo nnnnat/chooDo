@@ -1,0 +1,62 @@
+:root {
+  --ease: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@keyframes in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes render {
+  0% {
+    transform: translateY(-5%);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  /*100% {
+    opacity: 1;
+  }*/
+}
+
+@keyframes spin {
+ 0% {
+   transform: rotate(0deg);
+ }
+ 100% {
+   transform: rotate(360deg);
+ }
+}
+
+@keyframes dash {
+ 0% {
+   stroke-dashoffset: 0
+ }
+ 100% {
+   stroke-dashoffset: -600;
+ }
+}
+
+.in {
+  animation: in 500ms var(--ease) 1 alternate both;
+}
+
+.render {
+  animation: in 300ms var(--ease) 1 alternate both;
+
+  @media (min-width: 768px) {
+    animation: in 300ms var(--ease) 1 alternate both, render 300ms var(--ease) 1 alternate both;
+  }
+}
+
+.spin {
+  animation: in 500ms var(--ease) 1, spin 2000ms var(--ease) infinite;
+}
+
+.dash {
+  animation: dash 2500ms var(--ease) infinite;
+}

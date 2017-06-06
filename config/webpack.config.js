@@ -2,7 +2,6 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var cssnext = require('postcss-cssnext')
-
 var path = require('path')
 
 module.exports = {
@@ -23,6 +22,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/html/base.html' }),
     new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
-    new webpack.LoaderOptionsPlugin({ options: { postcss: [ cssnext({ browsers: 'IE 11' }) ] } })
+    new webpack.LoaderOptionsPlugin({ options: { postcss: [ cssnext() ] } })
   ]
 }

@@ -1,19 +1,31 @@
 
 // validaiton class
 export default class Validator {
-  constructor (emitter) {
-    this.emit = emitter.emit
+  // clear all errors
+  form () {
+    const fields = [...document.forms[0].getElementsByTagName('input')]
+    fields.map((field) => this.isEmpty(field))
+  }
+
+  // clear all errors
+  clear () {
+    const fields = [...document.forms[0].getElementsByTagName('input')]
+    fields.map((field) => this.removeError(field))
   }
 
   // errors
   hasError (field, message) {
     field.setCustomValidity(message)
     field.nextElementSibling.innerHTML = field.validationMessage
-    setTimeout(() => field.setCustomValidity(''), 3000)
+  }
+
+  // remove errors
+  removeError (field) {
+    field.setCustomValidity('')
   }
 
   // ===========================================================================
-  // Test
+  // Check
   // ===========================================================================
 
   // is string
@@ -21,10 +33,11 @@ export default class Validator {
     if (typeof str !== 'string') throw new TypeError('Validator only accepts strings')
   }
 
-  // is email
+  // is empty
   isEmpty (field) {
     const { value } = field
     this.isString(value)
     if (value.length === 0) this.hasError(field, "Field can't be empty")
+    else this.removeError(field)
   }
 }

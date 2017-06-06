@@ -1,15 +1,22 @@
-import { bogusTodos } from './helpers'
+import { bogusTodos, getTodos } from './helpers'
 
 export default (state, emitter) => {
-  const ogState = () => ({ upcoming: true, data: bogusTodos })
+  const ogState = () => ({ loaded: false, upcoming: true, data: [] })
+  const loadTodos = (todos) => {
+    state.todos.data = todos
+    state.todos.loaded = true;
+    emitter.emit('todos:refresh')
+  }
   state.todos = ogState()
 
   emitter.on('DOMContentLoaded', () => {
-    console.log('content loaded')
+    //console.log('content loaded')
+    getTodos().then(loadTodos)
+      .catch((err) => console.error(err))
   })
 
   emitter.on('render', () => {
-    console.log('render')
+    //console.log('render')
   })
 
   // ==========================================================================
@@ -32,7 +39,7 @@ export default (state, emitter) => {
    * emits the render event
    */
   emitter.on('todos:refresh', () => {
-    state.todos.data.sort((a, b) => a.due > b.due)
+    state.todos.data.sort((a, b) => new Date(a.due) - new Date(b.due))
     emitter.emit('render')
   })
 

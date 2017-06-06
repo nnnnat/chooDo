@@ -1,29 +1,7 @@
-header {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-main {
-  align-items: flex-start;
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem 0;
-}
-
-footer {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
+@custom-media --tiny (min-width: 480px);
+@custom-media --small (min-width: 768px);
+@custom-media --medium (min-width: 992px);
+@custom-media --large (min-width: 1200px);
 
 /* ==========================================================================
 // Global layout helpers

@@ -1,0 +1,60 @@
+@custom-media --tiny (min-width: 480px);
+@custom-media --small (min-width: 768px);
+@custom-media --medium (min-width: 992px);
+@custom-media --large (min-width: 1200px);
+
+.header {
+  composes: in from "../styles/animations.css";
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @media (--small) {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.main {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem 0;
+
+  @media (--medium) {
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.footer {
+  composes: in from "../styles/animations.css";
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*==============================================================================
+Loader Icon Styles
+==============================================================================*/
+
+.loader {
+  composes: spin from "../styles/animations.css";
+  margin: auto;
+  width: 3rem;
+}
+
+.loaderDash {
+  composes: dash from "../styles/animations.css";
+  fill: transparent;
+  stroke: MediumVioletRed;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 300;
+  stroke-miterlimit: 0;
+  stroke-width: 20;
+}

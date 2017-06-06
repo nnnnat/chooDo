@@ -1,7 +1,7 @@
-// import Validator from './validator'
+import Validator from './validator'
 
 export default (state, emitter) => {
-  // const validate = new Validator(emitter)
+  const validate = new Validator()
   const ogState = () => ({
     active: false,
     errors: [],
@@ -19,18 +19,13 @@ export default (state, emitter) => {
    * emits the render event and refreshes the todo list
    */
   emitter.on('form:clear', () => {
+    validate.clear()
     state.form = ogState()
     emitter.emit('todos:refresh')
   })
 
-  /**
-   * clear form event handler takes no param
-   * form is set to ogState
-   * emits the render event
-   */
-  emitter.on('form:error', () => {
-    console.log('form has error')
-    emitter.emit('render')
+  emitter.on('form:validate', () => {
+    validate.form()
   })
 
   /**
@@ -63,7 +58,7 @@ export default (state, emitter) => {
    * emits the render event
    */
   emitter.on('form:input', (input) => {
-    // validate.isEmpty(input)
+    validate.isEmpty(input)
     state.form.inputs[input.name] = input.value
     emitter.emit('render')
   })

@@ -24,6 +24,12 @@ export function pDate (str, options = {year: 'numeric', month: 'short', day: 'nu
 // ======================================================================================================
 // bogus todos for testing / writing styles
 // =======================================================================================================
+
+export function getTodos () {
+  const options = { method: 'GET' }
+  return window.fetch('http://demo6195035.mockable.io/todos', options).then(r => r.json())
+}
+
 export const bogusTodos = [
   { id: guid(), title: 'overdue', due: '2017-05-29', complete: false },
   { id: guid(), title: 'today', due: '2017-05-31', complete: false },

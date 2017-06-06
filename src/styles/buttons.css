@@ -33,6 +33,7 @@ button {
   background-color: MediumVioletRed;
   border-color: transparent;
   color: WhiteSmoke;
+  min-width: 5rem;
 
   &:--enter {
     background-color: transparent;
@@ -52,5 +53,5 @@ button {
 
 /* if button is in a group add some spacing*/
 button + button {
-  margin: 0 0 0 1rem;
+  margin: 0 0 0 2rem;
 }

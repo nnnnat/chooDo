@@ -3,6 +3,7 @@ import css from './form.css'
 import { guid } from '../scripts/helpers'
 
 export default ({ active, edit, inputs: { title, due } }, emit) => {
+  const today = (new Date()).toISOString().slice(0, 10) // yyyy-mm-dd format
   const submit = (e) => {
     e.preventDefault()
     if (edit) emit('todo:edit', { id: edit, title, due, complete: false })
@@ -12,17 +13,24 @@ export default ({ active, edit, inputs: { title, due } }, emit) => {
   return html`<section class=${css.root} data-active=${active}>
     <form onsubmit=${submit}>
 
-      <label for="title">
-        <span>Todo</span>
-        <input type="text" name="title" autocomplete="off" placeholder="Task" value=${title} oninput=${(e) => emit('form:input', e.target)} />
-        <span class="error"></span>
-      </label>
+      <label for="title">Todo</label>
+      <input type="text" name="title"
+        autocomplete="off"
+        placeholder="Task"
+        value=${title}
+        oninput=${(e) => emit('form:input', e.target)}
+        onblur=${(e) => emit('form:input', e.target)} />
+      <span class="error"></span>
 
-      <label for="due">
-        <span>Due</span>
-        <input type="date" name="due" placeholder="mm-dd-yyyy" value=${due} oninput=${(e) => emit('form:input', e.target)} />
-        <span class="error"></span>
-      </label>
+      <label for="due">Due</label>
+      <input type="date" name="due"
+        placeholder="yyyy-mm-dd"
+        min=${today}
+        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        value=${due}
+        oninput=${(e) => emit('form:input', e.target)}
+        onblur=${(e) => emit('form:input', e.target)} />
+      <span class="error"></span>
 
       <div className="group">
         <button class="invert" type="submit">${(edit) ? 'Edit' : 'Add'}</button>

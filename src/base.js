@@ -9,6 +9,3 @@ App.use(formState)
 App.use(todoState)
 App.route('/', view)
 App.mount('#base')
-
-// get rid dis shit!
-window.choo = App
