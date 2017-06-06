@@ -9,12 +9,12 @@ export default (state, emitter) => {
   }
   state.todos = ogState()
 
+  // dom loaded event
   emitter.on('DOMContentLoaded', () => {
-    // console.log('content loaded')
-    getTodos().then(loadTodos)
-      .catch((err) => console.error(err))
+    getTodos().then(loadTodos).catch((err) => console.error(err))
   })
 
+  // render event
   emitter.on('render', () => {
     // console.log('render')
   })

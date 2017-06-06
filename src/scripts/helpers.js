@@ -1,6 +1,4 @@
-/**
- * guid returns a RFC4122 v4 guid as a string
- */
+// guid returns a RFC4122 v4 guid as a string
 export function guid () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = Math.random() * 16 | 0
@@ -21,15 +19,18 @@ export function pDate (str, options = {year: 'numeric', month: 'short', day: 'nu
   return date.toLocaleDateString('en-us', options)
 }
 
-// ======================================================================================================
-// bogus todos for testing / writing styles
-// =======================================================================================================
-
+/**
+ * getTodos takes no params and
+ * returns a promise from the window.fetch method
+ * https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+ * [ return then(data => handler(data)).catch(error => hanlder(error)) ]
+ */
 export function getTodos () {
   const options = { method: 'GET' }
   return window.fetch('http://demo6195035.mockable.io/todos', options).then(r => r.json())
 }
 
+// bogus todos data for testing / styles
 export const bogusTodos = [
   { id: guid(), title: 'overdue', due: '2017-05-29', complete: false },
   { id: guid(), title: 'today', due: '2017-05-31', complete: false },
