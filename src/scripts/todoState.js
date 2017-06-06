@@ -1,22 +1,22 @@
-import { bogusTodos, getTodos } from './helpers'
+import { getTodos } from './helpers'
 
 export default (state, emitter) => {
   const ogState = () => ({ loaded: false, upcoming: true, data: [] })
   const loadTodos = (todos) => {
     state.todos.data = todos
-    state.todos.loaded = true;
+    state.todos.loaded = true
     emitter.emit('todos:refresh')
   }
   state.todos = ogState()
 
   emitter.on('DOMContentLoaded', () => {
-    //console.log('content loaded')
+    // console.log('content loaded')
     getTodos().then(loadTodos)
       .catch((err) => console.error(err))
   })
 
   emitter.on('render', () => {
-    //console.log('render')
+    // console.log('render')
   })
 
   // ==========================================================================
