@@ -1,10 +1,10 @@
-# base
-*another project starter*
+# choo Do
+*another todo app*
 
-A small front-end focused project starter using [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) and [Node](https://nodejs.org/en/).
+A small front-end focused project using [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) and [Node](https://nodejs.org/en/).
 
 ## Features
-* [Typescript](https://www.typescriptlang.org/) + [React](https://facebook.github.io/react/)
+* [Babel](https://babeljs.io/) + [choo](https://github.com/yoshuawuyts/choo) + [standardjs](https://standardjs.com/)
 * [CSS Modules](https://github.com/css-modules/css-modules) + [cssnext](http://cssnext.io/)
 * HTML Partials
 
@@ -20,9 +20,5 @@ You can also run base with `npm run watch`, this will start the nginx server, ru
 ### Server
 `npm run server` will start the nginx server
 
-## Roadmap
-- [ ] Linting
-- [ ] Markdown
-- [ ] Server Rendering
-- [ ] SVG Sprite
-- [ ] Examples
+### Linting
+`npm run lint` will run standardjs, `npm run lint:fix` will run standardjs with the `--fix` flag  
