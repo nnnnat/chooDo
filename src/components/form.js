@@ -2,8 +2,10 @@ import html from 'choo/html'
 import css from './form.css'
 import { guid } from '../scripts/helpers'
 
+// todays date in yyyy-mm-dd format
+const today = (new Date()).toISOString().slice(0, 10)
+
 export default ({ active, edit, inputs: { title, due } }, emit) => {
-  const today = (new Date()).toISOString().slice(0, 10) // yyyy-mm-dd format
   const submit = (e) => {
     e.preventDefault()
     if (edit) emit('todo:edit', { id: edit, title, due, complete: false })
