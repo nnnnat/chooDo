@@ -1,6 +1,6 @@
 import html from 'choo/html'
 import css from './todo.css'
-import { pDate } from '../scripts/helpers'
+import { pDate } from '../scripts/helper'
 
 export default (todo, emit, i) =>
   html`<div class=${css.root} id=${todo.id} style="animation-delay: ${50 - (i * 5)}0ms;">

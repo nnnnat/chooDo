@@ -1,6 +1,6 @@
 import html from 'choo/html'
 import css from './form.css'
-import { guid } from '../scripts/helpers'
+import { guid } from '../scripts/helper'
 
 // todays date in yyyy-mm-dd format
 const today = (new Date()).toISOString().slice(0, 10)

@@ -52,10 +52,10 @@ export default (state, emitter) => {
    * state.todos.data gets new array with new todo obj
    * emits the clear form and todos refresh events
    */
-  emitter.on('todo:create', (todo) => {
-    state.todos.data = [...state.todos.data, todo]
-    emitter.emit('form:clear')
-  })
+  // emitter.on('todo:create', (todo) => {
+  //   state.todos.data = [...state.todos.data, todo]
+  //   emitter.emit('form:clear')
+  // })
 
  /**
   * edit todo event handler takes a todo obj as a param

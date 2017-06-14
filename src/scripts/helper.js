@@ -8,15 +8,15 @@ export function guid () {
 }
 
 /**
- * pDate takes a date string and an optional options object,
- * the options object is the same as the toLocaleDateString options
+ * pDate takes a date string and an optional opt object,
+ * the opt object is the same as the toLocaleDateString opt
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
  * returns new date string in Feb 23, 2017 format
  * ['2017-02-23', Feb 23, 2017]
  */
-export function pDate (str, options = {year: 'numeric', month: 'short', day: 'numeric'}) {
+export function pDate (str, opt = {year: 'numeric', month: 'short', day: 'numeric'}) {
   const date = new Date(`${str}T00:00:00`)
-  return date.toLocaleDateString('en-us', options)
+  return date.toLocaleDateString('en-us', opt)
 }
 
 /**
@@ -26,8 +26,8 @@ export function pDate (str, options = {year: 'numeric', month: 'short', day: 'nu
  * [ return then(data => handler(data)).catch(error => hanlder(error)) ]
  */
 export function getTodos () {
-  const options = { method: 'GET' }
-  return window.fetch('http://demo6195035.mockable.io/todos', options).then(r => r.json())
+  const opt = { method: 'GET' }
+  return window.fetch('http://demo6195035.mockable.io/todos', opt).then(r => r.json())
 }
 
 // bogus todos data for testing / styles
