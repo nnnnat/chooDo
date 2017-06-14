@@ -4,7 +4,7 @@ import { headerEl, mainEl, footerEl, loadingEl } from './globals'
 import formEl from './form'
 
 export default ({ todos: { loaded, upcoming, data }, form }, emit) => {
-  const todos = data.filter((todo) => !todo.complete == upcoming)
+  const todos = data.filter((todo) => !todo.complete === upcoming)
   return html`<div class=${css.root}>
     ${headerEl(upcoming, emit)}
     ${(loaded) ? mainEl(todos, emit) : loadingEl()}

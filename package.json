@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "Tiny Todo app using the choo framework",
   "main": "base.js",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "scripts": {
     "build": "ENV=prd npm run wp",
     "prestart": "npm i && npm run build",
     "lint": "standard --env mocha",
     "lint:fix": "standard --env mocha --fix",
     "start": "ENV=prd npm run server",
-    "test": "npm run lint:fix && mocha",
+    "test": "npm run lint:fix && mocha --compilers js:babel-core/register ",
     "watch": "ENV=dev run-p server browserSync wp:watch",
     "browserSync": "browser-sync start --proxy \"localhost\" --files \"./dist\"",
     "wp": "webpack --config ./config/webpack.config.js -p",
@@ -35,6 +40,7 @@
     "browser-sync": "^2.18.8",
     "chai": "^4.0.2",
     "css-loader": "^0.28.1",
+    "deep-freeze": "0.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
