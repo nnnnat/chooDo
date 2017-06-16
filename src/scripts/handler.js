@@ -1,10 +1,14 @@
+// =============================================================================
+// App handler functions
+// =============================================================================
+
+// add item to array
 export function add (arr, i) {
-  console.log('add item handler')
-  console.log(i)
   return [...arr, i]
 }
 
-export function removeItem (arr, i) {
+// remove item from array
+export function remove (arr, i) {
   const index = arr.indexOf(i)
   return [
     ...arr.slice(0, index),
@@ -12,7 +16,8 @@ export function removeItem (arr, i) {
   ]
 }
 
-export function updateItem (arr, i) {
+// update item in array
+export function update (arr, i) {
   const index = arr.findIndex((t) => t.id === i.id)
   return [
     ...arr.slice(0, index),
@@ -21,6 +26,7 @@ export function updateItem (arr, i) {
   ]
 }
 
+// toggle boolean
 export function toggle (bln) {
   return !bln
 }

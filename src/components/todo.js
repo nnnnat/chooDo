@@ -12,5 +12,8 @@ export default (todo, emit, i) =>
         <button class="secondary" onclick=${() => emit('todo:delete', todo)}>Delete</button>
       </div>
     </div>
-    <button class="primary" onclick=${() => emit('todo:primary', todo)}>${(todo.complete) ? 'Undo' : 'Done'}</button>
+    <button class="primary" onclick=${() =>
+      emit('todo:primary', { id: todo.id, title: todo.title, due: todo.due, complete: !todo.complete })}>
+      ${(todo.complete) ? 'Undo' : 'Done'}
+    </button>
   </div>`

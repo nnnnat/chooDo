@@ -41,8 +41,13 @@ export default (state, emitter) => {
 
   // form toggles open or close
   emitter.on('form:toggle', () => {
-    console.log('form toggle')
     state.form.active = h.toggle(state.form.active)
+    emitter.emit('render')
+  })
+
+  // clearing the inputs, errors and closing form
+  emitter.on('form:clear', () => {
+    state.form = formState()
     emitter.emit('render')
   })
 
@@ -52,7 +57,6 @@ export default (state, emitter) => {
 
   // toggle between complete and upcoming todos
   emitter.on('todos:toggle', () => {
-    console.log('todos toggled')
     state.todos.upcoming = h.toggle(state.todos.upcoming)
     emitter.emit('render')
   })
@@ -60,6 +64,18 @@ export default (state, emitter) => {
   // a new todo is created
   emitter.on('todo:create', (todo) => {
     state.todos.data = h.add(state.todos.data, todo)
-    console.log('todo created')
+    emitter.emit('render')
+  })
+
+  // todo is completed
+  emitter.on('todo:primary', (todo) => {
+    state.todos.data = h.update(state.todos.data, todo)
+    emitter.emit('render')
+  })
+
+  // todo is completed
+  emitter.on('todo:delete', (todo) => {
+    state.todos.data = h.remove(state.todos.data, todo)
+    emitter.emit('render')
   })
 }

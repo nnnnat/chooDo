@@ -16,7 +16,7 @@ describe('Handler Test', () => {
     it('should remove item from array without mutation', () => {
       const arr = [0]
       deepFreeze(arr)
-      expect(h.removeItem(arr, 0)).to.eql([])
+      expect(h.remove(arr, 0)).to.eql([])
     })
   })
 
@@ -25,7 +25,7 @@ describe('Handler Test', () => {
       const item = { id: 1, title: 'after' }
       const arr = [{ id: 1, title: 'before' }]
       deepFreeze(arr)
-      expect(h.updateItem(arr, item)).to.eql([item])
+      expect(h.update(arr, item)).to.eql([item])
     })
   })
 
