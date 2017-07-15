@@ -4,7 +4,7 @@
 A small front-end focused project using [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) and [Node](https://nodejs.org/en/).
 
 ## Features
-* [Babel](https://babeljs.io/) + [choo](https://github.com/yoshuawuyts/choo) + [standardjs](https://standardjs.com/)
+* [Babel](https://babeljs.io/) + [choo](https://github.com/choojs/choo) + [standardjs](https://standardjs.com/)
 * [CSS Modules](https://github.com/css-modules/css-modules) + [cssnext](http://cssnext.io/)
 * HTML Partials
 
