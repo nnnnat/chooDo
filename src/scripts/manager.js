@@ -9,6 +9,7 @@ export default (state, emitter) => {
   })
   const formState = () => ({
     active: false,
+    edit: undefined,
     errors: [],
     inputs: { title: '', due: '' }
   })
@@ -45,6 +46,21 @@ export default (state, emitter) => {
     emitter.emit('render')
   })
 
+  // prepping form for todo edit
+  emitter.on('form:edit', ({ id, title, due }) => {
+    state.form.active = h.toggle(state.form.active)
+    state.form.edit = id
+    state.form.inputs.title = title
+    state.form.inputs.due = due
+    emitter.emit('render')
+  })
+
+  // collecting any user enter input
+  emitter.on('form:input', (input) => {
+    state.form.inputs[input.name] = input.value
+    emitter.emit('render')
+  })
+
   // clearing the inputs, errors and closing form
   emitter.on('form:clear', () => {
     state.form = formState()
@@ -64,6 +80,7 @@ export default (state, emitter) => {
   // a new todo is created
   emitter.on('todo:create', (todo) => {
     state.todos.data = h.add(state.todos.data, todo)
+    emitter.emit('form:clear')
     emitter.emit('render')
   })
 
