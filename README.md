@@ -1,6 +1,4 @@
-# choo Do
-*another todo app*
-
+# chooDo
 A small frontend focused project using [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/) and [Node](https://nodejs.org/en/).
 
 ## Features
