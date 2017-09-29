@@ -1,7 +1,9 @@
+import Validator from './validator'
 import { getTodos } from './helper'
 import * as h from './handler'
 
 export default (state, emitter) => {
+  const validate = new Validator()
   const todosState = () => ({
     loaded: false,
     upcoming: true,
@@ -16,6 +18,7 @@ export default (state, emitter) => {
   const loadTodos = (todos) => {
     state.todos.data = todos
     state.todos.loaded = true
+    emitter.emit('todos:refresh')
     emitter.emit('render')
   }
   state.todos = todosState()
@@ -28,12 +31,6 @@ export default (state, emitter) => {
   // page loaded app
   emitter.on('DOMContentLoaded', () => {
     getTodos().then(loadTodos).catch((err) => console.error(err))
-    console.log('loaded')
-  })
-
-  // app has re-rendered
-  emitter.on('render', () => {
-    console.log('render')
   })
 
   // ==========================================================================
@@ -57,6 +54,7 @@ export default (state, emitter) => {
 
   // collecting any user enter input
   emitter.on('form:input', (input) => {
+    validate.isEmpty(input)
     state.form.inputs[input.name] = input.value
     emitter.emit('render')
   })
@@ -71,15 +69,29 @@ export default (state, emitter) => {
   // Todos State
   // ==========================================================================
 
+  // state.todos.data is sorted by due date
+  emitter.on('todos:refresh', () => {
+    state.todos.data.sort((a, b) => new Date(a.due) - new Date(b.due))
+    emitter.emit('render')
+  })
+
   // toggle between complete and upcoming todos
   emitter.on('todos:toggle', () => {
     state.todos.upcoming = h.toggle(state.todos.upcoming)
+    emitter.emit('todo:refresh')
     emitter.emit('render')
   })
 
   // a new todo is created
   emitter.on('todo:create', (todo) => {
     state.todos.data = h.add(state.todos.data, todo)
+    emitter.emit('form:clear')
+    emitter.emit('render')
+  })
+
+  // a new todo is updated
+  emitter.on('todo:edit', (todo) => {
+    state.todos.data = h.update(state.todos.data, todo)
     emitter.emit('form:clear')
     emitter.emit('render')
   })
