@@ -3,7 +3,7 @@ chooDo is a task management app I've built to learn a few new skills
 
 * Using choo
 * Using CSSModules with PostCSS and cssnext
-* Using Moach & Chai for test driven development
+* Using Mocha & Chai for test driven development (WIP on develop branch)
 
 ## Features
 * [Babel](https://babeljs.io/) + [choo](https://github.com/choojs/choo)
