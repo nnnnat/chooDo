@@ -12,6 +12,8 @@ chooDo is a task management app I've built to learn a few new skills
 * HTML Partials
 * [Docker](https://www.docker.com/) + [Docker Compose](https://docs.docker.com/compose/) + [nginx](https://nginx.org/en/)
 
+<hr>
+
 ## How it works
 Clone or download this repo then run `npm start` from the project root, [webpack](https://webpack.github.io/) will bundle the project and Docker will start an nginx server at [localhost](http://localhost).
 
